@@ -1,41 +1,31 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Naranja | Panel de Control</title>
-  <link rel="stylesheet" href="css/inicio.css">
+  <title>Registro | Naranja</title>
+  <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-  <nav class="menu" aria-label="Menú principal">
-    <a class="logo" href="index.html" aria-label="Ir al inicio de Naranja">
-      <img src="images/logo.png" alt="Logo de Naranja">
-    </a>
-    <ul>
-      <li><a href="index.html" class="active" aria-current="page">Inicio</a></li>
-      <li><a href="clientes.html">Clientes</a></li>
-      <li><a href="#productos">Productos</a></li>
-      <li><a href="#configuracion">Configuración</a></li>
-    </ul>
-  </nav>
+  <main class="contenedor-global contenedor-registro">
+    <section class="panel-formulario" aria-labelledby="titulo-registro">
+      <form action="inicio.html" method="get">
+        <h1 id="titulo-registro">Naranja</h1>
 
-  <div class="main-wrapper">
-    <header class="banner"><h1>Bienvenido a Naranja</h1></header>
+        <label for="correo">Correo electrónico</label>
+        <input id="correo" name="correo" type="email" required>
 
-    <main class="content">
-      <section class="card bienvenida">
-        <h2>Panel de Control</h2>
-        <p>Bienvenido al sistema de gestión. Selecciona una opción del menú lateral para comenzar.</p>
-      </section>
+        <label for="contrasena">Contraseña</label>
+        <input id="contrasena" name="contrasena" type="password" required>
 
-      <section class="grid-cards" aria-label="Módulos del sistema">
-        <article class="card"><h3>Clientes</h3><p>Gestiona y revisa el listado de clientes activos.</p></article>
-        <article class="card" id="productos"><h3>Productos</h3><p>Administra el inventario y catálogo de productos.</p></article>
-        <article class="card" id="configuracion"><h3>Configuración</h3><p>Ajusta las preferencias del sistema y perfil.</p></article>
-      </section>
-    </main>
+        <p class="enlace-cuenta"> ¿No tienes una cuenta? <a href="registro.html">Registrarse</a></p>
 
-    <footer><p>© 2026 Naranja. Todos los derechos reservados.</p></footer>
-  </div>
+        <button type="submit">Iniciar sesión</button>
+      </form>
+    </section>
+
+    <section class="panel-imagen" aria-label="Edificios modernos de color naranja"></section>
+  </main>
 </body>
 </html>
