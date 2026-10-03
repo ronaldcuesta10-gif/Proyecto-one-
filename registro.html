@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro | Naranja</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <main class="contenedor-global contenedor-registro">
+    <section class="panel-formulario" aria-labelledby="titulo-registro">
+      <form action="inicio.html" method="get">
+        <h1 id="titulo-registro">Naranja</h1>
+
+        <label for="nombres">Nombres</label>
+        <input id="nombres" name="nombres" type="text" required>
+
+        <label for="apellidos">Apellidos</label>
+        <input id="apellidos" name="apellidos" type="text" required>
+
+        <label for="genero">Género</label>
+        <select id="genero" name="genero" required>
+          <option value="" selected disabled>Seleccionar</option>
+          <option value="femenino">Femenino</option>
+          <option value="masculino">Masculino</option>
+          <option value="otro">Otro</option>
+        </select>
+
+        <label for="fecha-nacimiento">Fecha de nacimiento</label>
+        <input id="fecha-nacimiento" name="fecha-nacimiento" type="date" required>
+
+        <label for="correo">Correo electrónico</label>
+        <input id="correo" name="correo" type="email" required>
+
+        <label for="contrasena">Contraseña</label>
+        <input id="contrasena" name="contrasena" type="password" required>
+
+        <p class="enlace-cuenta">¿Ya tienes una cuenta? <a href="index.html">Ingresar</a></p>
+
+        <button type="submit">Registrarse</button>
+      </form>
+    </section>
+
+    <section class="panel-imagen" aria-label="Edificios modernos de color naranja"></section>
+  </main>
+</body>
+</html>

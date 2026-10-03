@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-label="Fondo abstracto de Naranja">
+  <rect width="900" height="1200" fill="#163a38"/>
+  <circle cx="150" cy="160" r="240" fill="#d85b25" opacity=".78"/>
+  <circle cx="780" cy="330" r="290" fill="#0f6b6d" opacity=".75"/>
+  <path d="M-120 970C90 720 318 760 440 950s276 245 560-28v360H-120z" fill="#f7a76b" opacity=".55"/>
+  <path d="M-100 560C180 400 360 620 490 540s194-210 510-96v215c-300-90-332 135-571 155S165 656-100 783z" fill="#ffffff" opacity=".1"/>
+  <g fill="none" stroke="#ffffff" stroke-width="4" opacity=".22">
+    <circle cx="210" cy="560" r="86"/>
+    <circle cx="640" cy="820" r="130"/>
+    <path d="M70 310l130 90 130-90M550 110l160 110 130-110"/>
+  </g>
+</svg>

@@ -1,0 +1,193 @@
+/* Barra de acciones y búsqueda */
+.actions-bar {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.search-input {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  flex: 1;
+  font-size: 0.95rem;
+  min-width: 250px;
+  outline: none;
+  padding: 10px 15px;
+  transition: border-color 0.3s;
+}
+
+.search-input:focus { border-color: #d85b25; }
+
+/* Botones */
+.btn {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+  width: auto;
+}
+
+.btn-primary { background-color: #d85b25; color: white; }
+.btn-primary:hover { background-color: #a8461e; }
+
+.btn-icon {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  margin-right: 4px;
+  min-height: auto;
+  padding: 6px 10px;
+  transition: background-color 0.2s;
+  width: auto;
+}
+
+.btn-icon:hover { background-color: #f0f0f0; transform: none; }
+
+.btn-danger:hover {
+  background-color: #ffe6e6;
+  border-color: #d9534f;
+  color: #d9534f;
+}
+
+/* Tabla de datos */
+.table-container { overflow-x: auto; }
+.table-container h2 { color: #d85b25; margin-bottom: 8px; }
+.mensaje-tabla { color: #a8461e; font-size: 0.9rem; min-height: 1.3rem; }
+
+.data-table {
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  margin-top: 15px;
+  min-width: 760px;
+  width: 100%;
+}
+
+.data-table th,
+.data-table td {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.data-table th { background-color: #f5ece7; color: #333; font-weight: bold; }
+.data-table tbody tr:hover { background-color: #fff8f4; }
+
+/* Etiquetas de estado */
+.badge { border-radius: 12px; font-size: 0.8rem; font-weight: bold; padding: 4px 10px; }
+.badge-success { background-color: #dceee7; color: #1f6261; }
+.badge-warning { background-color: #fff0df; color: #a8461e; }
+
+/* Ventana emergente */
+.modal {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  padding: 18px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.modal-content {
+  animation: fadeIn 0.3s ease;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  overflow: hidden;
+  width: 100%;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+  align-items: center;
+  background-color: #d85b25;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+}
+
+.modal-header h2 { font-size: 1.2rem; margin: 0; }
+
+.close-btn {
+  background: transparent;
+  color: white;
+  font-size: 1.8rem;
+  line-height: 1;
+  min-height: auto;
+  padding: 0;
+  width: auto;
+}
+
+.close-btn:hover { background: transparent; color: #ddd; transform: none; }
+.modal-body { padding: 20px; }
+.form-group { margin-bottom: 15px; }
+
+.form-group label {
+  color: #333;
+  display: block;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  outline: none;
+  padding: 10px;
+  transition: border-color 0.3s;
+  width: 100%;
+}
+
+.form-group input:focus,
+.form-group select:focus { border-color: #d85b25; }
+
+.modal-footer {
+  background-color: #f8f9fa;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  padding: 15px 20px;
+}
+
+.btn-secondary { background-color: #6c757d; color: white; }
+.btn-secondary:hover { background-color: #5a6268; }
+
+.sr-only {
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+  .actions-bar .btn { width: 100%; }
+  .search-input { min-width: 0; width: 100%; }
+  .modal-footer { flex-direction: column-reverse; }
+  .modal-footer .btn { width: 100%; }
+}

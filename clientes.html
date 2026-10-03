@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clientes | Naranja</title>
+  <link rel="stylesheet" href="css/inicio.css">
+  <link rel="stylesheet" href="css/clientes.css">
+</head>
+<body>
+  <nav class="menu" aria-label="Menú principal">
+    <a class="logo" href="index.html" aria-label="Ir al inicio de Naranja">
+      <img src="images/logo.png" alt="Logo de Naranja">
+    </a>
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="clientes.html" class="active" aria-current="page">Clientes</a></li>
+      <li><a href="index.html#productos">Productos</a></li>
+      <li><a href="index.html#configuracion">Configuración</a></li>
+    </ul>
+  </nav>
+
+  <div class="main-wrapper">
+    <header class="banner">
+      <h1>Gestión de Clientes</h1>
+    </header>
+
+    <main class="content">
+      <section class="actions-bar card" aria-label="Acciones de clientes">
+        <label class="sr-only" for="buscarCliente">Buscar cliente</label>
+        <input type="search" id="buscarCliente" placeholder="Buscar cliente por nombre, correo o teléfono..." class="search-input">
+        <button type="button" class="btn btn-primary" id="nuevoCliente">+ Nuevo Cliente</button>
+      </section>
+
+      <section class="card table-container" aria-labelledby="tituloLista">
+        <h2 id="tituloLista">Lista de Clientes</h2>
+        <p class="mensaje-tabla" id="mensajeTabla" aria-live="polite"></p>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Correo electrónico</th>
+              <th scope="col">Teléfono</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Editar</th>
+              <th scope="col">Eliminar</th>
+            </tr>
+          </thead>
+          <tbody id="tablaClientes">
+            <tr>
+              <td>#001</td>
+              <td>Carlos Gómez</td>
+              <td>carlos.gomez@email.com</td>
+              <td>+57 300 123 4567</td>
+              <td><span class="badge badge-success">Activo</span></td>
+              <td><button class="btn-icon" type="button" aria-label="Editar a Carlos Gómez" data-action="edit">✏️</button></td>
+              <td><button class="btn-icon btn-danger" type="button" aria-label="Eliminar a Carlos Gómez" data-action="delete">🗑️</button></td>
+            </tr>
+            <tr>
+              <td>#002</td>
+              <td>María Rodríguez</td>
+              <td>maria.r@email.com</td>
+              <td>+57 311 987 6543</td>
+              <td><span class="badge badge-success">Activo</span></td>
+              <td><button class="btn-icon" type="button" aria-label="Editar a María Rodríguez" data-action="edit">✏️</button></td>
+              <td><button class="btn-icon btn-danger" type="button" aria-label="Eliminar a María Rodríguez" data-action="delete">🗑️</button></td>
+            </tr>
+            <tr>
+              <td>#003</td>
+              <td>Juan Pérez</td>
+              <td>juan.perez@email.com</td>
+              <td>+57 320 555 1212</td>
+              <td><span class="badge badge-warning">Inactivo</span></td>
+              <td><button class="btn-icon" type="button" aria-label="Editar a Juan Pérez" data-action="edit">✏️</button></td>
+              <td><button class="btn-icon btn-danger" type="button" aria-label="Eliminar a Juan Pérez" data-action="delete">🗑️</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 Naranja. Todos los derechos reservados.</p>
+    </footer>
+  </div>
+
+  <div id="modalCliente" class="modal" role="dialog" aria-modal="true" aria-labelledby="tituloModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="tituloModal">Registrar Nuevo Cliente</h2>
+        <button class="close-btn" type="button" aria-label="Cerrar ventana">×</button>
+      </div>
+      <form id="formCliente">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="nombre">Nombre completo *</label>
+            <input type="text" id="nombre" placeholder="Ej. Juan Pérez" required>
+          </div>
+          <div class="form-group">
+            <label for="correoCliente">Correo electrónico *</label>
+            <input type="email" id="correoCliente" placeholder="ejemplo@correo.com" required>
+          </div>
+          <div class="form-group">
+            <label for="telefono">Teléfono *</label>
+            <input type="tel" id="telefono" placeholder="+57 300 000 0000" required>
+          </div>
+          <div class="form-group">
+            <label for="estado">Estado</label>
+            <select id="estado">
+              <option value="Activo">Activo</option>
+              <option value="Inactivo">Inactivo</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="cancelarModal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar Cliente</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('modalCliente');
+    const formulario = document.getElementById('formCliente');
+    const tablaClientes = document.getElementById('tablaClientes');
+    const buscarCliente = document.getElementById('buscarCliente');
+    const mensajeTabla = document.getElementById('mensajeTabla');
+    const tituloModal = document.getElementById('tituloModal');
+    let filaEnEdicion = null;
+
+    function abrirModal(fila = null) {
+      filaEnEdicion = fila;
+      formulario.reset();
+      tituloModal.textContent = fila ? 'Editar cliente' : 'Registrar Nuevo Cliente';
+
+      if (fila) {
+        const celdas = fila.cells;
+        document.getElementById('nombre').value = celdas[1].textContent;
+        document.getElementById('correoCliente').value = celdas[2].textContent;
+        document.getElementById('telefono').value = celdas[3].textContent;
+        document.getElementById('estado').value = celdas[4].textContent.trim();
+      }
+
+      modal.style.display = 'flex';
+      document.getElementById('nombre').focus();
+    }
+
+    function cerrarModal() {
+      modal.style.display = 'none';
+      filaEnEdicion = null;
+    }
+
+    function crearBoton(accion, icono, nombre) {
+      const boton = document.createElement('button');
+      boton.type = 'button';
+      boton.className = accion === 'delete' ? 'btn-icon btn-danger' : 'btn-icon';
+      boton.dataset.action = accion;
+      boton.textContent = icono;
+      boton.setAttribute('aria-label', `${accion === 'edit' ? 'Editar a' : 'Eliminar a'} ${nombre}`);
+      return boton;
+    }
+
+    function crearFila(id, nombre, correo, telefono, estado) {
+      const fila = document.createElement('tr');
+      const claseBadge = estado === 'Activo' ? 'badge-success' : 'badge-warning';
+      fila.innerHTML = `<td>${id}</td><td></td><td></td><td></td><td><span class="badge ${claseBadge}">${estado}</span></td><td></td><td></td>`;
+      fila.cells[1].textContent = nombre;
+      fila.cells[2].textContent = correo;
+      fila.cells[3].textContent = telefono;
+      fila.cells[5].appendChild(crearBoton('edit', '✏️', nombre));
+      fila.cells[6].appendChild(crearBoton('delete', '🗑️', nombre));
+      return fila;
+    }
+
+    function siguienteId() {
+      return `#${String(tablaClientes.rows.length + 1).padStart(3, '0')}`;
+    }
+
+    document.getElementById('nuevoCliente').addEventListener('click', () => abrirModal());
+    document.querySelector('.close-btn').addEventListener('click', cerrarModal);
+    document.getElementById('cancelarModal').addEventListener('click', cerrarModal);
+
+    window.addEventListener('click', (evento) => {
+      if (evento.target === modal) cerrarModal();
+    });
+
+    formulario.addEventListener('submit', (evento) => {
+      evento.preventDefault();
+      const nombre = document.getElementById('nombre').value.trim();
+      const correo = document.getElementById('correoCliente').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+      const estado = document.getElementById('estado').value;
+
+      if (filaEnEdicion) {
+        const id = filaEnEdicion.cells[0].textContent;
+        filaEnEdicion.replaceWith(crearFila(id, nombre, correo, telefono, estado));
+        mensajeTabla.textContent = 'Cliente actualizado correctamente.';
+      } else {
+        tablaClientes.appendChild(crearFila(siguienteId(), nombre, correo, telefono, estado));
+        mensajeTabla.textContent = 'Cliente registrado correctamente.';
+      }
+      cerrarModal();
+    });
+
+    tablaClientes.addEventListener('click', (evento) => {
+      const boton = evento.target.closest('button[data-action]');
+      if (!boton) return;
+      const fila = boton.closest('tr');
+      const nombre = fila.cells[1].textContent;
+
+      if (boton.dataset.action === 'edit') abrirModal(fila);
+      if (boton.dataset.action === 'delete' && confirm(`¿Deseas eliminar a ${nombre}?`)) {
+        fila.remove();
+        mensajeTabla.textContent = 'Cliente eliminado de la lista.';
+      }
+    });
+
+    buscarCliente.addEventListener('input', () => {
+      const consulta = buscarCliente.value.toLowerCase().trim();
+      [...tablaClientes.rows].forEach((fila) => {
+        fila.hidden = !fila.textContent.toLowerCase().includes(consulta);
+      });
+    });
+  </script>
+</body>
+</html>

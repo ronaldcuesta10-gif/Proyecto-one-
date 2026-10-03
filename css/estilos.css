@@ -1,0 +1,90 @@
+:root {
+  --naranja: #d85b25;
+  --naranja-oscuro: #a83e17;
+  --turquesa: #0f6b6d;
+  --texto: #203237;
+  --borde: #cbd6d5;
+  --fondo: #e9f2f0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  align-items: center;
+  background: var(--fondo);
+  color: var(--texto);
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 32px 16px;
+}
+
+.contenedor-global {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(15, 65, 64, 0.18);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 940px;
+  min-height: 430px;
+  overflow: hidden;
+  width: min(100%, 940px);
+}
+
+.contenedor-registro { min-height: 590px; }
+.panel-formulario { align-items: center; display: flex; padding: 38px 40px; }
+form { width: 100%; }
+
+h1 { color: var(--naranja); font-size: 2.25rem; margin-bottom: 18px; text-align: center; }
+label { display: block; font-size: 0.98rem; margin-bottom: 5px; }
+input, select, button { font: inherit; }
+
+input, select {
+  background: #ffffff;
+  border: 1px solid var(--borde);
+  border-radius: 5px;
+  color: var(--texto);
+  height: 40px;
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  width: 100%;
+}
+
+input:focus, select:focus {
+  border-color: var(--turquesa);
+  box-shadow: 0 0 0 3px rgba(15, 107, 109, 0.15);
+  outline: none;
+}
+
+.enlace-cuenta { font-size: 0.98rem; margin: 3px 0 22px; }
+a { color: var(--naranja-oscuro); font-weight: 700; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+button {
+  background: var(--naranja);
+  border: 0;
+  border-radius: 5px;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 700;
+  min-height: 42px;
+  transition: background-color 160ms ease, transform 160ms ease;
+  width: 100%;
+}
+
+button:hover { background: var(--naranja-oscuro); transform: translateY(-1px); }
+
+.panel-imagen {
+  background-image: linear-gradient(145deg, rgba(15, 107, 109, 0.76), rgba(216, 91, 37, 0.7)), url('../images/fondo-panel.svg');
+  background-position: center;
+  background-size: cover;
+  min-height: 100%;
+}
+
+@media (max-width: 680px) {
+  body { align-items: flex-start; padding: 20px 12px; }
+  .contenedor-global { grid-template-columns: 1fr; }
+  .panel-formulario { order: 2; padding: 30px 24px; }
+  .panel-imagen { min-height: 190px; order: 1; }
+}
